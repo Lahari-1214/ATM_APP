@@ -5,30 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        body{
-            margin:20px;
-            padding:30px;
-           
-           
-
+        body {
+            margin: 20px;
+            padding: 30px;
         }
-        div{
-             border: 60px solid black;
-             background-color: aqua;
-
+    
+        div {
+            border: 60px solid black;
+            background-color: aqua;
+    
         }
-        h1{
-            color:blueviolet;
+    
+        h1 {
+            color: blueviolet;
             text-align: center;
-
+    
         }
-        h2{
-            color:red;
-            text-align:center;
+    
+        h2 {
+            color: red;
+            text-align: center;
         }
-        h3{
-            color:brown;
+    
+        h3 {
+            color: brown;
             text-align: left;
+        }
+    
+        .button:hover {
+            background-color: white;
+            color: white;
+        }
+    
+        .b1 {
+            background-color: pink;
+        }
+    
+        .b2 {
+            background-color: pink;
+        }
+    
+        .b3 {
+            background-color: red;
+    
         }
     </style>
 </head>
@@ -43,7 +62,15 @@
      <h3>Account Number:{{acc_no}}</h3>
      <h3>Initial Amount:{{balance}}</h3>
      </section>
-     
+     <div class="button">    
+     <a href="/withdraw"><button class= "b1" type="button">Withdraw</button></a>
+     <button class = "b2" type="button">Deposit</button>
+     <button class ="b3" type="button">Delete</button>
+     </div>
+ 
+
+
+
      </div>
     
 </body>
