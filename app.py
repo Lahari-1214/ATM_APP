@@ -18,6 +18,23 @@ def Dashboard():
     return render_template('dashboard.html', acc_no=acc_no,
         username=username,
         balance=balance)
+@app.route('/withdraw',methods=['POST'])
+def Withdraw():
+    acc_no = request.form.get('acc_no')
+    username = request.form.get('username')
+    balance = float(request.form.get('balance'))
+    withdraw_amount = float(request.form.get('withdraw_amount'))
+    if withdraw_amount > balance:
+        message = "Insufficient funds!"
+        new_balance = balance
+    else:
+        new_balance = balance - withdraw_amount
+        message = f"Withdrawal of {withdraw_amount} successful!"
+    return render_template('dashboard.html', acc_no=acc_no,
+        username=username,
+        balance=new_balance,
+        message=message)
+
 
 
 if __name__ == '__main__':
