@@ -48,17 +48,31 @@
 <body>
     <div>
     <h1>Welcome To ATM</h1>
-     <h2>{{username}}</h2>
+     <h2>{{data.name}}</h2>
      <br>
      <section>
      <h3>User Name:{{data.name}}</h3>
      <h3>Account Number:{{acc_no}}</h3>
      <h3>Initial Amount:{{data.balance}}</h3>
      </section>
-     <div class="button">    
-     <a href="/withdraw/{{acc_no}}"><button class= "b1" type="button">Withdraw</button></a>
-     <button class = "b2" type="button">Deposit</button>
-     <button class ="b3" type="button">Delete</button>
+     <div>
+        <h1>Form for Deposit</h1>    
+        <form action="/deposit/{{acc_no}}" method="post">
+            <input type="number" name="amt" placeholder="Enter amount" required>
+            <input type="submit" value="Deposit">
+        </form>
+     </div>
+     <div>
+        <h1>Form for Withdraw</h1>
+        <form action="/withdraw/{{acc_no}}" method="post">
+            <input type="number" name="amt" placeholder="Enter amount" required>
+            <input type="submit" value="withdraw" >
+        </form>
+     </div>
+     <div>
+        <h1>Form for Account Deletion</h1>
+        <button><a href="/delete/{{acc_no}}">Delete Account</a></button>
+        
      </div>
      </div>
     
