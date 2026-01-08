@@ -4,84 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
 
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        /* Main card */
-        .atm-container {
-            background-color: #ffffff;
-            width: 500px;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        /* Header */
-        h1 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        /* Form */
-        form {
-            text-align: left;
-        }
-
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group strong {
-            width: 150px;
-            font-size: 16px;
-            color: #444;
-        }
-
-        .form-group input {
-            flex: 1;
-            height: 40px;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 15px;
-        }
-
-        /* Button */
-        .btn {
-            width: 100%;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 12px;
-            font-size: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #333;
-        }
-    </style>
 </head>
 
 <body>
