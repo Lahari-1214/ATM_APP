@@ -11,35 +11,38 @@ def create_account():
     name = request.form["name"]
     balance = int(request.form["balance"])
     accounts[acc_no] = {"name": name, "balance": balance}
-    return redirect(url_for("dashboard", acc_no=acc_no))
+    return redirect(url_for("Dashboard", acc_no=acc_no))
 # DASHBOARD
 @app.route("/dashboard/<acc_no>")
-def dashboard(acc_no):
+def Dashboard(acc_no):
     data = accounts[acc_no]
     return render_template("dashboard.html", acc_no=acc_no, data=data)
 # DEPOSIT
 @app.route("/deposit/<acc_no>", methods=["POST"])
 def deposit(acc_no):
-    amount = int(request.form["amount"])
-    accounts[acc_no]["balance"] += amount
-    return redirect(url_for("dashboard", acc_no=acc_no))
+    amount = int(request.form["amt"])
+    if amount>0:
+        accounts[acc_no]["balance"] += amount
+        return redirect(url_for("Dashboard", acc_no=acc_no))
+    return "Invalid Amount"
 
 @app.route('/withdraw/<acc_no>',methods=['POST'])
 def Withdrawn(acc_no):
-    amount = int(request.form['amount'])  # Get withdrawal amount
+    amount = int(request.form['amt'])  # Get withdrawal amount
 
     if accounts[acc_no]['balance'] >= amount:
         accounts[acc_no]['balance'] -= amount  # Deduct from balance
-        return redirect(url_for("dashboard", acc_no=acc_no))
+        # return redirect(url_for("dashboard", acc_no=acc_no))
+        return redirect(url_for('Dashboard',acc_no=acc_no))
     else:
         # If insufficient balance, show message with link to go back
-        return f'Requested amount is greater than current balance <br> <a href="/dashboard/{acc_no}">Go Back to Dashboard</a>'
+        return f'Insufficient balance'
     
 # DELETE ACCOUNT
 @app.route("/delete/<acc_no>")
 def delete(acc_no):
     accounts.pop(acc_no)
-    return redirect(url_for("home"))
+    return redirect(url_for("Home"))
 
 if __name__ == '__main__':
     app.run(debug=True)
