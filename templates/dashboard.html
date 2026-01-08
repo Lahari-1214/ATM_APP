@@ -3,78 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>ATM Dashboard</title>
+
     <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
         body {
-            margin: 20px;
+            background-color: #f4f6f8;
             padding: 30px;
         }
-        div {
-            border: 60px solid black;
-            background-color: aqua;
-    
+
+        /* Main container */
+        .dashboard {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
+
+        /* Headings */
         h1 {
-            color: blueviolet;
             text-align: center;
+            color: #333;
+            margin-bottom: 10px;
         }
+
         h2 {
-            color: red;
             text-align: center;
+            color: #6a1b9a;
+            margin-bottom: 30px;
         }
-    
-        h3 {
-            color: brown;
-            text-align: left;
+
+        /* Account info */
+        .account-info {
+            background: #eef3f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
         }
-        .button:hover {
-            background-color: white;
-            color: white;
+
+        .account-info h3 {
+            color: #444;
+            margin-bottom: 10px;
         }
-        .b1 {
-            background-color: pink;
+
+        /* Section cards */
+        .card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-    
-        .b2 {
-            background-color: pink;
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #333;
         }
-    
-        .b3 {
-            background-color: red;
-    
+
+        /* Forms */
+        form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        input[type="number"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Buttons */
+        .btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+        .danger {
+            background: #d32f2f;
+        }
+
+        .danger:hover {
+            background: #b71c1c;
+        }
+
+        /* Delete link */
+        .delete-link {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div>
-    <h1>Welcome To ATM</h1>
-     <h2>{{data.name}}</h2>
-     <br>
-     <section>
-     <h3>User Name:{{data.name}}</h3>
-     <h3>Account Number:{{acc_no}}</h3>
-     <h3>Initial Amount:{{data.balance}}</h3>
-     </section>
-     <div>
-        <h1>Form for Deposit</h1>    
-        <form action="/deposit/{{acc_no}}" method="post">
-            <input type="number" name="amt" placeholder="Enter amount" required>
-            <input type="submit" value="Deposit">
-        </form>
-     </div>
-     <div>
-        <h1>Form for Withdraw</h1>
-        <form action="/withdraw/{{acc_no}}" method="post">
-            <input type="number" name="amt" placeholder="Enter amount" required>
-            <input type="submit" value="withdraw" >
-        </form>
-     </div>
-     <div>
-        <h1>Form for Account Deletion</h1>
-        <button><a href="/delete/{{acc_no}}">Delete Account</a></button>
-        
-     </div>
-     </div>
-    
+
+    <div class="dashboard">
+        <h1>Welcome To ATM</h1>
+        <h2>{{data.name}}</h2>
+
+        <div class="account-info">
+            <h3>User Name: {{data.name}}</h3>
+            <h3>Account Number: {{acc_no}}</h3>
+            <h3>Current Balance: ₹ {{data.balance}}</h3>
+        </div>
+
+        <div class="card">
+            <h3>Deposit Amount</h3>
+            <form action="/deposit/{{acc_no}}" method="post">
+                <input type="number" name="amt" placeholder="Enter amount" required>
+                <input type="submit" value="Deposit" class="btn">
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Withdraw Amount</h3>
+            <form action="/withdraw/{{acc_no}}" method="post">
+                <input type="number" name="amt" placeholder="Enter amount" required>
+                <input type="submit" value="Withdraw" class="btn">
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Delete Account</h3>
+            <button class="btn danger">
+                <a href="/delete/{{acc_no}}" class="delete-link">Delete Account</a>
+            </button>
+        </div>
+    </div>
+
 </body>
 </html>
