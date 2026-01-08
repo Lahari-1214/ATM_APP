@@ -19,7 +19,8 @@ The objective of this project is to develop a simple ATM system using the Flask 
 | Delete Account              | Removes the account details from the dictionary                               |
 </pre>
 
-<h2> Project Folder Structure</h2>
+<h2> Project Folder Structure:</h2>
+<pre>
 atm_app/
 │ app.py
 └─ templates/
@@ -27,5 +28,6 @@ atm_app/
     │ dashboard.html
 |.gitignore
 |README.md
+</pre>
 
 
