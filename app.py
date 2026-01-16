@@ -1,5 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
+import mysql.connector
 app = Flask(__name__)
+db=mysql.connector.connect(host="localhost",user="root",password="leela@123",database="ATM_DB")
 accounts={}
 @app.route('/')
 def Home():
