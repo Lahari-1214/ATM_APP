@@ -12,12 +12,13 @@ def create_account():
     acc_no = request.form["acc_no"]
     name = request.form["name"]
     balance = int(request.form["balance"])
+    pin = request.form["pin"]
     query = """
-        INSERT INTO accounts (acc_no, name, initial_balance)
-        VALUES (%s, %s, %s)
+       INSERT INTO accounts (acc_no, name, initial_balance, pin)
+        VALUES (%s, %s, %s,%s)
     """
     cursor = db.cursor()
-    cursor.execute(query, (acc_no, name, balance))
+    cursor.execute(query, (acc_no, name, balance,pin))
     db.commit()
     return redirect(url_for("Dashboard", acc_no=acc_no))
 # DASHBOARD
@@ -76,7 +77,7 @@ def Withdraw(acc_no):
         db.commit()
         return redirect(url_for("Dashboard", acc_no=acc_no))
     else:
-        return "Insufficient balance" #wanted to make this update using javascript later
+        return "Insufficient balance" #wanted to make this update using javascript 
 
     
 # DELETE ACCOUNT
@@ -86,6 +87,25 @@ def delete(acc_no):
     cursor.execute("DELETE FROM accounts WHERE acc_no = %s", (acc_no,))
     db.commit()
     return redirect(url_for("Home"))
+
+
+# Login Page logic
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        acc_no = request.form['acc_no']
+        pin = request.form['pin']
+
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM accounts WHERE acc_no = %s AND pin = %s", (acc_no, pin))
+        account = cursor.fetchone()
+
+        if account:
+            return redirect(url_for('Dashboard', acc_no=acc_no))
+        else:
+            return "Invalid account number or PIN"
+
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
