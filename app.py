@@ -1,8 +1,10 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,session
 import mysql.connector
 app = Flask(__name__)
 db=mysql.connector.connect(host="localhost",user="root",password="leela@123",database="ATM_DB")
 # accounts={}
+app.secret_key = "atm_secret_key" #should be update tommorrow
+
 @app.route('/')
 def Home():
     return render_template('register.html')
@@ -106,6 +108,11 @@ def login():
             return "Invalid account number or PIN"
 
     return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+    session.clear()     # removes logged-in user
+    return redirect("/login")
 
 
 if __name__ == '__main__':
