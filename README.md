@@ -31,3 +31,8 @@ atm_app/
 </pre>
 
 
+<h2>Outputs:</h2>
+![](assets/Login.png) | ![](assets/Register.png)| ![](assets/Dashboard.png) | 
+
+
+
