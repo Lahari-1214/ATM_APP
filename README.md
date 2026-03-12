@@ -31,8 +31,11 @@ atm_app/
 </pre>
 
 
-<h2>Outputs:</h2>
-![](assets/Login.png) | ![](assets/Register.png)| ![](assets/Dashboard.png) | 
+## Outputs
+
+| Login Page | Register Page | Dashboard |
+|------------|--------------|-----------|
+| ![](assets/Login.png) | ![](assets/Register.png) | ![](assets/Dashboard.png) |
 
 
 
